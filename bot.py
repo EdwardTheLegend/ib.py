@@ -51,7 +51,7 @@ class IBpy(commands.Bot):
 
         for cog in INITIAL_COGS:
             try:
-                await bot.load_extension(f"cogs.{cog}")
+                await self.load_extension(f"cogs.{cog}")
                 logger.debug(f'Imported cog "{cog}".')
             except commands.errors.NoEntryPointError as e:
                 # ! Remove before push
@@ -63,14 +63,14 @@ class IBpy(commands.Bot):
         logger.info("Loaded all cogs.")
 
     async def on_ready(self):
-        await bot.change_presence(
+        await self.change_presence(
             activity=discord.Game(name=f"{config.prefix}help"),
             status=discord.Status.do_not_disturb,
         )
 
-        bot_name = bot.user.name
-        bot_description = bot.description
-        guild_number = len(bot.guilds)
+        bot_name = self.user.name
+        bot_description = self.description
+        guild_number = len(self.guilds)
 
         logger.info(f'Bot "{bot_name}" is now connected.')
         logger.info(f"Currently serving {guild_number} guilds.")
