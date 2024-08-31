@@ -34,6 +34,7 @@ INITIAL_COGS = (
     "tags",
     "updates",
     "voting",
+    "channelorder",
 )
 
 
